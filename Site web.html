@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ZenCorp - Page Entreprise</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #f4f6f8;
+      color: #333;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 30px;
+      background: linear-gradient(to right, #1565c0, #1e88e5);
+      color: white;
+    }
+
+    header img {
+      height: 60px;
+      margin-right: 20px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #0d47a1;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      color: white;
+      padding: 15px 25px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    nav button:hover,
+    nav button.active {
+      background-color: #1565c0;
+    }
+
+    main {
+      padding: 30px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .section {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    .section.active {
+      display: block;
+      opacity: 1;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #1565c0;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div style="display: flex; align-items: center;">
+      <img src="C:\autre\Site Web\Bonney_menace_Vegapunk.jpg" alt="Logo ZenCorp">
+      <div>
+        <h1 style="margin: 0;">ZenCorp Entreprise</h1>
+        <p style="margin: 0;">Innovation • Éthique • Excellence</p>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <button class="tab-button active" data-tab="accueil">Accueil</button>
+    <button class="tab-button" data-tab="apropos">À propos</button>
+    <button class="tab-button" data-tab="services">Services</button>
+    <button class="tab-button" data-tab="equipe">Équipe</button>
+    <button class="tab-button" data-tab="contact">Contact</button>
+  </nav>
+
+  <main>
+    <div id="accueil" class="section active">
+      <h2>Bienvenue chez ZenCorp</h2>
+      <img src="C:\autre\Site Web\Bonney-in-Egghead-1.jpg" alt="Bannière entreprise" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 10px; margin-bottom: 20px;">
+      <p>Nous accompagnons les entreprises vers un avenir plus responsable et performant. Notre siège est situé à Paris.</p>
+
+      <h3>Où nous trouver ?</h3>
+      <div style="margin-top: 10px; border-radius: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.999769302716!2d2.2922923156742993!3d48.85884417928778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fc0ad50e499%3A0x69549a6e21f2c5cf!2sTour%20Eiffel!5e0!3m2!1sfr!2sfr!4v1622303519076!5m2!1sfr!2sfr" 
+          width="100%" 
+          height="300" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div id="apropos" class="section">
+      <h2>À propos de nous</h2>
+      <p>ZenCorp est une entreprise fondée sur des valeurs fortes : respect, innovation et qualité. Notre mission est de créer un impact positif et durable pour nos clients.</p>
+    </div>
+
+    <div id="services" class="section">
+      <h2>Nos services</h2>
+      <ul>
+        <li>Conseil en stratégie</li>
+        <li>Développement numérique</li>
+        <li>Formation en entreprise</li>
+        <li>Audit organisationnel</li>
+      </ul>
+    </div>
+
+    <div id="equipe" class="section">
+      <h2>Notre équipe</h2>
+      <p>Une équipe passionnée, composée d'experts dans chaque domaine. Chacun apporte une vision unique et un engagement fort envers l’excellence.</p>
+    </div>
+
+    <div id="contact" class="section">
+      <h2>Contactez-nous</h2>
+      <p>Email : contact@zencorp.com</p>
+      <p>Téléphone : +33 1 23 45 67 89</p>
+      <p>Adresse : 123 rue de l’Avenir, 75000 Paris</p>
+    </div>
+  </main>
+
+  <script>
+    const buttons = document.querySelectorAll('.tab-button');
+    const sections = document.querySelectorAll('.section');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        buttons.forEach(btn => btn.classList.remove('active'));
+        sections.forEach(sec => {
+          sec.classList.remove('active');
+          sec.style.animation = 'none'; // reset animation
+        });
+
+        button.classList.add('active');
+        const target = document.getElementById(button.dataset.tab);
+        target.classList.add('active');
+        void target.offsetWidth; // reflow
+        target.style.animation = 'fadeIn 0.5s ease forwards';
+      });
+    });
+  </script>
+
+</body>
+</html>
